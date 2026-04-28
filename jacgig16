@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jacopo Agostinone — Product Manager</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --border: #222222;
+      --accent: #e8ff47;
+      --accent2: #47c8ff;
+      --text: #f0f0f0;
+      --muted: #666666;
+      --font-display: 'Syne', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.4;
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── HEADER ── */
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 5rem 0 4rem;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .header-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: end;
+    }
+
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .tag::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .header-meta {
+      text-align: right;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 2;
+    }
+
+    .header-meta a {
+      color: var(--accent2);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .header-meta a:hover { color: var(--accent); }
+
+    .summary {
+      margin-top: 2.5rem;
+      font-size: 15px;
+      color: #aaa;
+      max-width: 560px;
+      line-height: 1.8;
+      border-left: 2px solid var(--accent);
+      padding-left: 1.2rem;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border);
+      animation: fadeUp 0.7s ease both;
+    }
+
+    section:nth-child(2) { animation-delay: 0.1s; }
+    section:nth-child(3) { animation-delay: 0.2s; }
+    section:nth-child(4) { animation-delay: 0.3s; }
+    section:nth-child(5) { animation-delay: 0.4s; }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── EXPERIENCE ── */
+    .job {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .job:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+    .job-title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+
+    .job-company {
+      color: var(--accent);
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+
+    .job-date {
+      font-size: 11px;
+      color: var(--muted);
+      text-align: right;
+      white-space: nowrap;
+      padding-top: 0.3rem;
+    }
+
+    .job-desc {
+      color: #999;
+      font-size: 13px;
+    }
+
+    .job-desc li {
+      list-style: none;
+      padding-left: 1.2rem;
+      position: relative;
+      margin-bottom: 0.4rem;
+    }
+    .job-desc li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent2);
+      font-size: 11px;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .skill-group h3 {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.05em;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .skill-tag {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: #aaa;
+      font-size: 11px;
+      padding: 0.25rem 0.6rem;
+      border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .skill-tag:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ── EDUCATION ── */
+    .edu {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .edu:last-child { margin-bottom: 0; }
+
+    .edu-degree {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+    }
+    .edu-school {
+      font-size: 12px;
+      color: var(--accent2);
+      margin-top: 0.2rem;
+    }
+    .edu-date {
+      font-size: 11px;
+      color: var(--muted);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 3rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .header-inner { grid-template-columns: 1fr; }
+      .header-meta { text-align: left; }
+      .job { grid-template-columns: 1fr; }
+      .job-date { text-align: left; }
+      .edu { grid-template-columns: 1fr; }
+      .edu-date { text-align: left; }
+      footer { flex-direction: column; gap: 1rem; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- HEADER -->
+    <header>
+      <div class="header-inner">
+        <div>
+          <div class="tag">Product Manager · Open to new roles</div>
+          <h1>Jacopo<br /><span>Agostinone.</span></h1>
+          <p class="summary">
+            Product Manager with a track record of shipping user-centred products at scale.
+            Bridges the gap between customer insight, business strategy, and engineering
+            delivery — turning ambiguous problems into clear roadmaps and measurable outcomes.
+          </p>
+        </div>
+        <div class="header-meta">
+          <div>London, UK</div>
+          <div><a href="mailto:jacopo@email.com">jacopo@email.com</a></div>
+          <div><a href="https://linkedin.com/in/jacopoagostinone" target="_blank">linkedin.com/in/jacopoagostinone</a></div>
+          <div><a href="https://jacopoagostinone.com" target="_blank">jacopoagostinone.com</a></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- EXPERIENCE -->
+    <section>
+      <div class="section-label">Experience</div>
+
+      <div class="job">
+        <div>
+          <div class="job-title">Senior Product Manager</div>
+          <div class="job-company">Company Name · Full-time</div>
+          <ul class="job-desc">
+            <li>Owned end-to-end roadmap for a B2B SaaS platform with 500K+ active users, driving 30% YoY growth in key engagement metrics</li>
+            <li>Led cross-functional squads of 8–12 (engineering, design, data, marketing) to ship 4 major product lines on time and under budget</li>
+            <li>Ran continuous discovery — 200+ user interviews, usability sessions, and A/B tests — to prioritise the highest-impact features</li>
+            <li>Reduced customer churn by 18% following a data-driven overhaul of the onboarding experience</li>
+          </ul>
+        </div>
+        <div class="job-date">Feb 2022 — Present</div>
+      </div>
+
+      <div class="job">
+        <div>
+          <div class="job-title">Product Manager</div>
+          <div class="job-company">Previous Company · Full-time</div>
+          <ul class="job-desc">
+            <li>Defined and shipped a mobile-first feature set that increased DAU by 40% within two quarters of launch</li>
+            <li>Partnered with sales and customer success to build feedback loops that directly informed the product backlog</li>
+            <li>Introduced OKR framework across the product org, improving team alignment and delivery predictability</li>
+          </ul>
+        </div>
+        <div class="job-date">Mar 2019 — Jan 2022</div>
+      </div>
+
+      <div class="job">
+        <div>
+          <div class="job-title">Associate Product Manager</div>
+          <div class="job-company">Early Company · Full-time</div>
+          <ul class="job-desc">
+            <li>Supported senior PMs in writing PRDs, managing sprint ceremonies, and coordinating stakeholder reviews</li>
+            <li>Conducted competitive benchmarking across 15+ products to inform the company's 3-year strategy</li>
+          </ul>
+        </div>
+        <div class="job-date">Sep 2017 — Feb 2019</div>
+      </div>
+
+    </section>
+
+    <!-- SKILLS -->
+    <section>
+      <div class="section-label">Skills</div>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h3>Discovery</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">User Interviews</span>
+            <span class="skill-tag">Usability Testing</span>
+            <span class="skill-tag">Jobs-to-be-Done</span>
+            <span class="skill-tag">Surveys</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Strategy</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Roadmapping</span>
+            <span class="skill-tag">OKRs</span>
+            <span class="skill-tag">Prioritisation</span>
+            <span class="skill-tag">Go-to-Market</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Delivery</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Agile / Scrum</span>
+            <span class="skill-tag">PRDs</span>
+            <span class="skill-tag">A/B Testing</span>
+            <span class="skill-tag">Sprint Planning</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Tools</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Jira</span>
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">Amplitude</span>
+            <span class="skill-tag">Mixpanel</span>
+            <span class="skill-tag">Notion</span>
+            <span class="skill-tag">SQL</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section>
+      <div class="section-label">Education</div>
+
+      <div class="edu">
+        <div>
+          <div class="edu-degree">BSc Business & Management, 2:1</div>
+          <div class="edu-school">University of Your Choice</div>
+        </div>
+        <div class="edu-date">2013 — 2017</div>
+      </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <span>© 2026 Jacopo Agostinone</span>
+      <div class="footer-links">
+        <a href="mailto:jacopo@email.com">Email</a>
+        <a href="https://linkedin.com/in/jacopoagostinone" target="_blank">LinkedIn</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
