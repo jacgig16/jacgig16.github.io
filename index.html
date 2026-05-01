@@ -48,6 +48,16 @@
       --sec-out-border:  #8b3a0f22;
       --sec-out-bg:      #fdf0e6;
       --sec-out-inner:   #fae2cc;
+
+      --sec-cert-label:  #7a1f3d;
+      --sec-cert-border: #7a1f3d22;
+      --sec-cert-bg:     #fdf0f4;
+      --sec-cert-inner:  #f9e0e8;
+
+      --sec-lang-label:  #1a5c6b;
+      --sec-lang-border: #1a5c6b22;
+      --sec-lang-bg:     #e9f6f9;
+      --sec-lang-inner:  #d5eef3;
     }
 
     /* ── DARK MODE ── */
@@ -83,6 +93,16 @@
       --sec-out-border:  #ffb07a22;
       --sec-out-bg:      #1e140d;
       --sec-out-inner:   #271a10;
+
+      --sec-cert-label:  #ff8fb0;
+      --sec-cert-border: #ff8fb022;
+      --sec-cert-bg:     #1e0d13;
+      --sec-cert-inner:  #2a1019;
+
+      --sec-lang-label:  #5dcfe0;
+      --sec-lang-border: #5dcfe022;
+      --sec-lang-bg:     #0a1a1e;
+      --sec-lang-inner:  #0e2226;
     }
 
     html { scroll-behavior: smooth; }
@@ -597,6 +617,85 @@
       border-color: var(--accent2);
     }
 
+
+    .section-card.sec-cert   { background: var(--sec-cert-bg);   border-color: var(--sec-cert-border); }
+    .section-card.sec-lang   { background: var(--sec-lang-bg);   border-color: var(--sec-lang-border); }
+
+    .sec-cert .section-label { color: var(--sec-cert-label); }
+    .sec-lang .section-label { color: var(--sec-lang-label); }
+
+    .sec-cert .section-label::after { background: var(--sec-cert-border); }
+    .sec-lang .section-label::after { background: var(--sec-lang-border); }
+
+    /* ── CERTIFICATION CARDS ── */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 1rem;
+    }
+    .cert-item {
+      background: var(--sec-cert-inner);
+      border: 1px solid var(--sec-cert-border);
+      border-radius: 10px;
+      padding: 1.1rem 1.2rem;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.3s;
+    }
+    .cert-item:hover {
+      border-color: var(--sec-cert-label);
+      box-shadow: 0 4px 14px rgba(122,31,61,0.08);
+    }
+    :root.dark .cert-item:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.3); }
+    .cert-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+    .cert-issuer {
+      font-size: 11px;
+      color: var(--sec-cert-label);
+      margin-bottom: 0.25rem;
+    }
+    :root.dark .cert-issuer { color: var(--sec-cert-label); }
+    .cert-date {
+      font-size: 10px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+    }
+
+    /* ── LANGUAGE CARDS ── */
+    .lang-card {
+      background: var(--sec-lang-inner);
+      border: 1px solid var(--sec-lang-border);
+      border-radius: 10px;
+      padding: 1.1rem 1.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.9rem;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .lang-card:last-child { margin-bottom: 0; }
+    .lang-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+    }
+    .lang-level {
+      font-size: 10px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      background: var(--surface);
+      border: 1px solid var(--sec-lang-border);
+      border-radius: 999px;
+      padding: 0.2rem 0.75rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
     /* ── FOOTER ── */
     footer {
       padding: 2rem 0 0;
@@ -830,6 +929,50 @@
           <div class="edu-school">Universita degli Studi G. D'Annunzio, Pescara</div>
         </div>
         <div class="edu-date">2013 — 2016</div>
+      </div>
+    </div>
+
+    <!-- CERTIFICATIONS -->
+    <div class="section-card sec-cert">
+      <div class="section-label">Certifications</div>
+      <div class="cert-grid">
+        <div class="cert-item">
+          <div class="cert-name">SQL Mastery</div>
+          <div class="cert-issuer">Code With Mosh</div>
+          <div class="cert-date">June 2020</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-name">Fundamentals of Business Analysis</div>
+          <div class="cert-issuer">Udemy</div>
+          <div class="cert-date">September 2022</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-name">Learn PHP</div>
+          <div class="cert-issuer">Codecademy</div>
+          <div class="cert-date">April 2023</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-name">The Future of Payment Technologies</div>
+          <div class="cert-issuer">University of Michigan's Ross School of Business</div>
+          <div class="cert-date">March 2024</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LANGUAGES -->
+    <div class="section-card sec-lang">
+      <div class="section-label">Languages</div>
+      <div class="lang-card">
+        <div class="lang-name">Italian</div>
+        <div class="lang-level">Native</div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-name">English</div>
+        <div class="lang-level">Bilingual</div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-name">Spanish</div>
+        <div class="lang-level">Bilingual</div>
       </div>
     </div>
 
