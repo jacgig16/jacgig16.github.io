@@ -741,11 +741,27 @@
     .tl-toggle {
       display: flex;
       align-items: center;
-      cursor: pointer;
-      user-select: none;
       margin-bottom: 1.4rem;
+      cursor: default;
+      user-select: none;
     }
-    .tl-toggle:hover .tl-section-head { color: var(--accent2); }
+    .tl-section-head {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex: 1;
+    }
+    .tl-section-head::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
     .tl-expand-btn {
       display: flex;
       align-items: center;
@@ -783,8 +799,6 @@
     }
     .tl-wrap.open .tl-expand-btn-label::before { content: 'Show less'; }
     .tl-expand-btn-label::before { content: 'Show more'; }
-      font-size: 11px;
-      color: var(--surface);
       background: var(--accent2);
       border-radius: 999px;
       width: 22px;
@@ -884,7 +898,7 @@
 
       <!-- CAREER TIMELINE -->
       <div class="tl-wrap" id="tlWrap">
-        <div class="tl-toggle" onclick="toggleTimeline()" aria-expanded="false">
+        <div class="tl-toggle" aria-expanded="false">
           <div class="tl-section-head">Career Timeline</div>
         </div>
         <div class="tl-collapsible" id="tlCollapsible">
