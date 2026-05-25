@@ -299,25 +299,27 @@
 
     /* ── PROFILE PHOTO ── */
     .header-inner {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 2.5rem;
-      align-items: start;
+    display: block;
     }
-    .profile-photo {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: center top;
-      border: 3px solid var(--border);
-      box-shadow: var(--card-shadow);
-      flex-shrink: 0;
-      transition: border-color 0.3s;
-    }
-    .header-left {
-      min-width: 0;
-    }
+
+.profile-photo {
+  float: right;
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 3px solid var(--border);
+  box-shadow: var(--card-shadow);
+  flex-shrink: 0;
+  transition: border-color 0.3s;
+}
+
+.header-left {
+  min-width: 0;
+}
 
     /* ── SECTION CARDS ── */
     .section-card {
@@ -901,9 +903,6 @@
             <span class="meta-sep">·</span>
             <a href="https://www.linkedin.com/in/jacopo-agostinone/" target="_blank">linkedin.com/in/jacopo-agostinone</a>
           </div>
-          <p class="summary">
-            Product Manager with expertise in agile delivery, roadmap ownership, and stakeholder management. Embeds AI into core workflows — from prototyping and PRDs to data analysis — to spend more time on strategy and customers. Known for aligning stakeholders and rallying cross-functional teams to deliver outcomes that meet business objectives.
-          </p>
         </div><!-- /header-left -->
         <img
           class="profile-photo"
@@ -912,6 +911,10 @@
         />
 
       </div><!-- /header-inner -->
+
+      <p class="summary">
+        Product Manager with expertise in agile delivery, roadmap ownership, and stakeholder management. Embeds AI into core workflows — from prototyping and PRDs to data analysis — to spend more time on strategy and customers. Known for aligning stakeholders and rallying cross-functional teams to deliver outcomes that meet business objectives.
+      </p>
 
       <!-- CAREER TIMELINE -->
       <div class="tl-wrap" id="tlWrap">
