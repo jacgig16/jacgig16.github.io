@@ -299,27 +299,25 @@
 
     /* ── PROFILE PHOTO ── */
     .header-inner {
-    display: block;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2.5rem;
+      align-items: start;
     }
-
-.profile-photo {
-  float: right;
-  margin-left: 2rem;
-  margin-bottom: 1rem;
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: center top;
-  border: 3px solid var(--border);
-  box-shadow: var(--card-shadow);
-  flex-shrink: 0;
-  transition: border-color 0.3s;
-}
-
-.header-left {
-  min-width: 0;
-}
+    .profile-photo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      border: 3px solid var(--border);
+      box-shadow: var(--card-shadow);
+      flex-shrink: 0;
+      transition: border-color 0.3s;
+    }
+    .header-left {
+      min-width: 0;
+    }
 
     /* ── SECTION CARDS ── */
     .section-card {
