@@ -688,15 +688,28 @@
       flex: 1;
     }
     .prev-exp-arrow {
-      font-size: 14px;
-      color: var(--muted);
-      transition: transform 0.3s ease, color 0.2s;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--surface);
+      background: var(--muted);
+      border-radius: 999px;
+      width: 26px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease, background 0.2s, box-shadow 0.2s;
       line-height: 1;
       flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(26,58,107,0.14);
+    }
+    .prev-exp-toggle:hover .prev-exp-arrow {
+      background: var(--accent2);
+      box-shadow: 0 3px 10px rgba(26,58,107,0.28);
     }
     .prev-exp-card.open .prev-exp-arrow {
       transform: rotate(180deg);
-      color: var(--accent2);
+      background: var(--accent2);
     }
     .prev-exp-body {
       max-height: 0;
@@ -957,7 +970,7 @@
 
   <!-- THEME SWITCH -->
   <div class="theme-toggle-wrap">
-    <span class="toggle-label-text" id="toggle-label">Dark</span>
+    <span class="toggle-label-text" id="toggle-label">Dark Mode</span>
     <label class="switch" aria-label="Toggle dark mode">
       <input type="checkbox" id="theme-checkbox" onchange="toggleTheme(this)" />
       <div class="switch-track">
@@ -1412,7 +1425,7 @@
     function applyTheme(dark) {
       document.documentElement.classList.toggle('dark', dark);
       checkbox.checked = dark;
-      label.textContent = dark ? 'Light' : 'Dark';
+      label.textContent = dark ? 'Light Mode' : 'Dark Mode';
     }
 
     function toggleTheme(el) {
