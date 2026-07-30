@@ -340,6 +340,47 @@
       border-top: 1px solid var(--border);
     }
 
+    /* ── TAB NAVIGATION (pill style) ── */
+    .tab-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.6rem;
+      padding-top: 1.6rem;
+      border-top: 1px solid var(--border);
+    }
+    .tab-btn {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.55rem 1.15rem;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .tab-btn:hover {
+      border-color: var(--accent2);
+      color: var(--accent2);
+    }
+    .tab-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--surface);
+      box-shadow: var(--card-shadow);
+    }
+    .tab-panel { display: none; }
+    .tab-panel.active {
+      display: block;
+      animation: fadeUp 0.4s ease both;
+    }
+
     /* ── SECTION CARDS ── */
     .section-card {
       background: var(--surface);
@@ -941,9 +982,10 @@
           Product Manager with a track record of owning complex roadmaps, driving measurable business outcomes, and leading cross-functional teams. Brings a strong analytical foundation and actively embeds AI into core workflows, from discovery to delivery, to elevate strategic focus. Recognised for building alignment across senior stakeholders and shaping product direction in fast-moving, data-driven environments.
         </p>
       </div>
+    </header>
 
-      <!-- CAREER TIMELINE -->
-      <div class="tl-wrap" id="tlWrap">
+    <!-- CAREER TIMELINE (always visible) -->
+    <div class="tl-wrap" id="tlWrap">
         <div class="tl-toggle" aria-expanded="false">
           <div class="tl-section-head">Career Timeline</div>
         </div>
@@ -1009,7 +1051,19 @@
             <div class="tl-dot-wrap"><div class="tl-dot tl-gray"></div></div>
             <div class="tl-card"><div class="tl-card-top"><div><div class="tl-role">Internship</div><div class="tl-company">Di Muzio Laterizi Srl, Italy</div></div><span class="tl-badge tl-gray">Early career</span></div></div>
           </div>
-    </header>
+        </div><!-- /tl-track -->
+        </div><!-- /tl-collapsible -->
+      </div><!-- /tl-wrap -->
+
+    <!-- TAB NAVIGATION -->
+    <nav class="tab-nav">
+      <button class="tab-btn active" onclick="switchTab('experience', this)">🧑‍💻 Experience</button>
+      <button class="tab-btn" onclick="switchTab('skills-edu', this)">🎓 Skills &amp; Education</button>
+      <button class="tab-btn" onclick="switchTab('outside', this)">🌴 Outside of Work</button>
+    </nav>
+
+    <!-- TAB PANEL: EXPERIENCE -->
+    <div class="tab-panel active" id="panel-experience">
 
     <!-- EXPERIENCE -->
     <div class="section-card sec-exp">
@@ -1114,6 +1168,10 @@
         </div>
       </div>
     </div>
+    </div><!-- /panel-experience -->
+
+    <!-- TAB PANEL: SKILLS & EDUCATION -->
+    <div class="tab-panel" id="panel-skills-edu">
 
     <!-- SKILLS -->
     <div class="section-card sec-skills">
@@ -1249,6 +1307,10 @@
         <div class="lang-level">Studying</div>
       </div>
     </div>
+    </div><!-- /panel-skills-edu -->
+
+    <!-- TAB PANEL: OUTSIDE OF WORK -->
+    <div class="tab-panel" id="panel-outside">
 
     <!-- OUTSIDE OF WORK -->
     <div class="section-card sec-out">
@@ -1287,6 +1349,7 @@
         </div>
       </div>
     </div>
+    </div><!-- /panel-outside -->
 
     <!-- FOOTER -->
     <footer>
@@ -1302,6 +1365,20 @@
   <script>
     const checkbox = document.getElementById('theme-checkbox');
     const label    = document.getElementById('toggle-label');
+
+    function switchTab(name, btnEl) {
+      document.querySelectorAll('.tab-panel').forEach(function(panel) {
+        panel.classList.remove('active');
+      });
+      document.getElementById('panel-' + name).classList.add('active');
+
+      document.querySelectorAll('.tab-btn').forEach(function(btn) {
+        btn.classList.remove('active');
+      });
+      btnEl.classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
     function toggleTimeline() {
       const wrap = document.getElementById('tlWrap');
