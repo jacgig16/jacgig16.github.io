@@ -589,15 +589,16 @@
 
     /* ── OUTSIDE OF WORK ── */
     .outside-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      display: flex;
+      flex-direction: column;
       gap: 1rem;
     }
     .outside-item {
       background: var(--accent-light);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 1.2rem 1.3rem;
+      padding: 1.2rem 1.4rem;
+      width: 100%;
       transition: border-color 0.2s, box-shadow 0.2s, background 0.3s;
     }
     .outside-item:hover {
@@ -605,13 +606,18 @@
       box-shadow: 0 4px 14px rgba(26,58,107,0.08);
     }
     :root.dark .outside-item:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.3); }
-    .outside-icon { font-size: 1.5rem; margin-bottom: 0.5rem; display: block; }
+    .outside-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.5rem;
+    }
+    .outside-icon { font-size: 1.5rem; line-height: 1; }
     .outside-title {
       font-family: 'Playfair Display', serif;
       font-weight: 700;
-      font-size: 0.88rem;
+      font-size: 0.95rem;
       color: var(--text);
-      margin-bottom: 0.3rem;
     }
     .outside-desc { font-size: 11.5px; color: var(--muted); line-height: 1.6; }
 
@@ -1319,33 +1325,28 @@
       <div class="outside-grid">
         <a href="https://raw.githubusercontent.com/jacgig16/jacgig16.github.io/main/Images/GreatWallOfChina.jpeg" target="_blank" rel="noopener" style="text-decoration:none; color:inherit; display:contents;">
         <div class="outside-item" style="cursor:pointer;">
-          <span class="outside-icon">✈️</span>
-          <div class="outside-title">Travel</div>
+          <div class="outside-header"><span class="outside-icon">✈️</span><div class="outside-title">Travel</div></div>
           <div class="outside-desc">Love to discover new places and new cultures. One Continent not visited yet, unfortunately: Oceania. Next on the list: Japan, Indonesia, Malaysia.</div>
         </div>
         </a>
         <a href="https://raw.githubusercontent.com/jacgig16/jacgig16.github.io/main/Images/SportsCombo.png" target="_blank" rel="noopener" style="text-decoration:none; color:inherit; display:contents;">
         <div class="outside-item" style="cursor:pointer;">
-          <span class="outside-icon">🏋️</span>
-          <div class="outside-title">Sports</div>
+          <div class="outside-header"><span class="outside-icon">🏋️</span><div class="outside-title">Sports</div></div>
           <div class="outside-desc">Passionate about football and tennis, mainly, but love most of team sports and played many different sports with friends. Regular eight-a-side player and whenever there is a chance, I love playing a tennis match. </div>
         </div>
         </a>
         <a href="https://raw.githubusercontent.com/jacgig16/jacgig16.github.io/main/Images/NatureCollage.png" target="_blank" rel="noopener" style="text-decoration:none; color:inherit; display:contents;">
         <div class="outside-item" style="cursor:pointer;">
-          <span class="outside-icon">🌿</span>
-          <div class="outside-title">Nature</div>
+          <div class="outside-header"><span class="outside-icon">🌿</span><div class="outside-title">Nature</div></div>
           <div class="outside-desc">One of my best passion. I love animals, both on land and in the water; that is why I love diving, a fairly recent, growing passion. Love also any trekking or walks in the outdoors, one of the visited dream destinations so far: the Serengeti.</div>
         </div>
           </a>
         <div class="outside-item">
-          <span class="outside-icon">🎵</span>
-          <div class="outside-title">Theatre</div>
+          <div class="outside-header"><span class="outside-icon">🎵</span><div class="outside-title">Theatre</div></div>
           <div class="outside-desc">I thought I did not like musicals until I started to see some in the London West End, and now I love to watch some whenever I have a chance. The Lion King remains unbeaten up top, I think the beginning of the musical is one of the best pieces I ever seen.</div>
         </div>
         <div class="outside-item">
-          <span class="outside-icon">👨‍🍳</span>
-          <div class="outside-title">Food</div>
+          <div class="outside-header"><span class="outside-icon">👨‍🍳</span><div class="outside-title">Food</div></div>
           <div class="outside-desc">Being Italian, a passion for food came pre-installed. I cook regularly — pasta, risotto, and whatever new dishes I come across. When the weather plays along, you'll find me outside either at the BBQ or at the pizza oven. Wine and cheese are almost non-negotiable items.</div>
         </div>
       </div>
