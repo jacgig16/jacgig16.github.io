@@ -36,6 +36,9 @@
     :root.dark .tl-dot.tl-gray   { background: #444441; border-color: #B4B2A9; }
     .tl-card { margin-left: 14px; margin-bottom: 8px; padding: 9px 13px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); flex: 1; transition: border-color 0.15s, background 0.3s; }
     .tl-card:hover { border-color: var(--accent2); }
+    .tl-card-link { display: contents; text-decoration: none; color: inherit; cursor: pointer; }
+    .tl-card-link:hover .tl-card { border-color: var(--accent2); box-shadow: 0 4px 14px rgba(26,58,107,0.08); }
+    :root.dark .tl-card-link:hover .tl-card { box-shadow: 0 4px 14px rgba(0,0,0,0.3); }
     .tl-card-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
     .tl-role { font-size: 12px; font-family: 'Playfair Display', serif; font-weight: 700; color: var(--text); }
     .tl-company { font-size: 11px; color: var(--muted); font-family: var(--font-mono); margin-top: 1px; }
@@ -1003,19 +1006,25 @@
           <div class="tl-item">
             <div class="tl-year">Jul 2024 – present</div>
             <div class="tl-dot-wrap"><div class="tl-dot tl-blue"></div></div>
+            <a href="https://www.marsh.com/en-gb/home.html" target="_blank" rel="noopener" class="tl-card-link">
             <div class="tl-card"><div class="tl-card-top"><div><div class="tl-role">Analytics Product Manager</div><div class="tl-company">Marsh</div></div><span class="tl-badge tl-blue">Current</span></div></div>
+            </a>
           </div>
           <div class="tl-gap"></div>
           <div class="tl-item">
             <div class="tl-year">Nov 2023 – Feb 2024</div>
             <div class="tl-dot-wrap"><div class="tl-dot tl-purple"></div></div>
+            <a href="https://www.vitamojo.com/" target="_blank" rel="noopener" class="tl-card-link">
             <div class="tl-card"><div class="tl-card-top"><div><div class="tl-role">Product Manager</div><div class="tl-company">Vita Mojo</div></div><span class="tl-badge tl-purple">4 months</span></div></div>
+            </a>
           </div>
           <div class="tl-gap"></div>
           <div class="tl-item">
             <div class="tl-year">Jun 2021 – Nov 2023</div>
             <div class="tl-dot-wrap"><div class="tl-dot tl-teal"></div></div>
+            <a href="https://chillchain.net/" target="_blank" rel="noopener" class="tl-card-link">
             <div class="tl-card"><div class="tl-card-top"><div><div class="tl-role">Product Manager</div><div class="tl-company">Chill-Chain</div></div><span class="tl-badge tl-teal">2 yr 3 mo</span></div></div>
+            </a>
           </div>
           <div class="tl-expand-btn" onclick="toggleTimeline()">
             <span class="tl-arrow">&#8964;</span>
