@@ -16,6 +16,17 @@
   <style>
     @import url('https://cdn.jsdelivr.net/npm/@fontsource/cascadia-code@4.2.1/index.css');
 
+
+    /* ── TIMELINE → EXPERIENCE JUMP ── */
+    .job-card[id] { scroll-margin-top: 5rem; }
+    .tl-card-link[data-jump] { cursor: pointer; }
+    .tl-card-link[data-jump]:focus-visible .tl-card { outline: 2px solid var(--accent2); outline-offset: 2px; }
+    .job-card.jump-highlight { animation: jumpHighlight 1.8s ease-out; }
+    @keyframes jumpHighlight {
+      0%, 40% { border-color: var(--accent2); box-shadow: 0 0 0 3px var(--accent2); }
+      100%    { box-shadow: 0 0 0 0 transparent; }
+    }
+
     /* ── CAREER TIMELINE ── */
     .tl-wrap { padding: 1.5rem 0 0; width: 100%; }
 .tl-track { position: relative; padding-left: 128px; }
@@ -1035,25 +1046,25 @@
           <div class="tl-item">
             <div class="tl-year">Jul 2024 – present</div>
             <div class="tl-dot-wrap"><div class="tl-dot tl-blue"></div></div>
-            <a href="https://www.marsh.com/en-gb/home.html" target="_blank" rel="noopener" class="tl-card-link">
-            <div class="tl-card"><div class="tl-card-top"><div><div class="tl-role">Analytics Product Manager</div><div class="tl-company"><strong>Marsh</strong> - Financial & Professional Services Firm</div></div><span class="tl-badge tl-blue">Current</span></div></div>
-            </a>
+            <div class="tl-card-link" data-jump="exp-marsh" role="link" tabindex="0" aria-label="Go to Analytics Product Manager at Marsh in the Experience section">
+            <div class="tl-card"><div class="tl-card-top"><div><div class="tl-role">Analytics Product Manager</div><div class="tl-company"><a href="https://www.marsh.com/en-gb/home.html" target="_blank" rel="noopener" class="company-link"><strong>Marsh</strong></a> - Financial & Professional Services Firm</div></div><span class="tl-badge tl-blue">Current</span></div></div>
+            </div>
           </div>
           <div class="tl-gap"></div>
           <div class="tl-item">
             <div class="tl-year">Nov 2023 – Mar 2024</div>
             <div class="tl-dot-wrap"><div class="tl-dot tl-purple"></div></div>
-            <a href="https://www.vitamojo.com/" target="_blank" rel="noopener" class="tl-card-link">
-            <div class="tl-card"><div class="tl-card-top"><div><div class="tl-role">Product Manager</div><div class="tl-company"><strong>Vita Mojo</strong> - Quick Service Restaurant SaaS</div></div><span class="tl-badge tl-purple">5 months</span></div></div>
-            </a>
+            <div class="tl-card-link" data-jump="exp-vitamojo" role="link" tabindex="0" aria-label="Go to Product Manager at Vita Mojo in the Experience section">
+            <div class="tl-card"><div class="tl-card-top"><div><div class="tl-role">Product Manager</div><div class="tl-company"><a href="https://www.vitamojo.com/" target="_blank" rel="noopener" class="company-link"><strong>Vita Mojo</strong></a> - Quick Service Restaurant SaaS</div></div><span class="tl-badge tl-purple">5 months</span></div></div>
+            </div>
           </div>
           <div class="tl-gap"></div>
           <div class="tl-item">
             <div class="tl-year">Jun 2021 – Nov 2023</div>
             <div class="tl-dot-wrap"><div class="tl-dot tl-teal"></div></div>
-            <a href="https://chillchain.net/" target="_blank" rel="noopener" class="tl-card-link">
-            <div class="tl-card"><div class="tl-card-top"><div><div class="tl-role">Product Manager</div><div class="tl-company"><strong>Chill-Chain</strong> - Logistics SaaS</div></div><span class="tl-badge tl-teal">2 yr 3 mo</span></div></div>
-            </a>
+            <div class="tl-card-link" data-jump="exp-chillchain" role="link" tabindex="0" aria-label="Go to Product Manager at Chill-Chain in the Experience section">
+            <div class="tl-card"><div class="tl-card-top"><div><div class="tl-role">Product Manager</div><div class="tl-company"><a href="https://chillchain.net/" target="_blank" rel="noopener" class="company-link"><strong>Chill-Chain</strong></a> - Logistics SaaS</div></div><span class="tl-badge tl-teal">2 yr 3 mo</span></div></div>
+            </div>
           </div>
           <div class="tl-expand-btn" onclick="toggleTimeline()">
             <span class="tl-arrow">&#8964;</span>
@@ -1115,7 +1126,7 @@
       <div class="section-label">🧑‍💻 Experience</div>
 
       <!-- Marsh -->
-      <div class="job-card" style="margin-bottom:1rem;">
+      <div class="job-card" id="exp-marsh" style="margin-bottom:1rem;">
         <div class="job-header">
           <div>
             <div class="job-title">Analytics Product Manager</div>
@@ -1135,7 +1146,7 @@
       </div>
 
       <!-- Vita Mojo -->
-      <div class="job-card" style="margin-bottom:1rem;">
+      <div class="job-card" id="exp-vitamojo" style="margin-bottom:1rem;">
         <div class="job-header">
           <div>
             <div class="job-title">Product Manager</div>
@@ -1152,7 +1163,7 @@
       </div>
 
       <!-- Chill-Chain: combined card with two roles -->
-      <div class="job-card">
+      <div class="job-card" id="exp-chillchain">
         <div class="job-header">
           <div>
             <div class="job-title">Product Manager <span style="font-weight:400; color:var(--muted); font-size:0.85em;">→ promoted from Business Operations</span></div>
@@ -1424,6 +1435,37 @@
       });
       btnEl.classList.add('active');
     }
+
+    function jumpToExperience(id) {
+      // Make sure the Experience tab is the visible one
+      var panel = document.getElementById('panel-experience');
+      if (!panel.classList.contains('active')) {
+        var btn = document.querySelector('.tab-btn[onclick*="experience"]');
+        switchTab('experience', btn);
+      }
+      var target = document.getElementById(id);
+      if (!target) return;
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      target.classList.remove('jump-highlight');
+      void target.offsetWidth; // restart animation if clicked repeatedly
+      target.classList.add('jump-highlight');
+    }
+
+    // Timeline cards with data-jump scroll to the matching experience card.
+    // Clicks on real links inside the card (e.g. "Marsh") still open the link.
+    document.querySelectorAll('[data-jump]').forEach(function(el) {
+      el.addEventListener('click', function(e) {
+        if (e.target.closest('a')) return;
+        jumpToExperience(el.dataset.jump);
+      });
+      el.addEventListener('keydown', function(e) {
+        if (e.target.closest('a')) return;
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          jumpToExperience(el.dataset.jump);
+        }
+      });
+    });
 
     function toggleTimeline() {
       const wrap = document.getElementById('tlWrap');
