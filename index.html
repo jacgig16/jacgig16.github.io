@@ -69,6 +69,20 @@
     .tl-connector-text { font-size: 9px; color: var(--muted); font-style: italic; font-family: var(--font-mono); }
     .tl-gap { height: 4px; }
 
+    /* ── TIMELINE: MOBILE ── */
+    @media (max-width: 640px) {
+      .container { padding-left: 1rem; padding-right: 1rem; }
+      .tl-track { padding-left: 0; }
+      .tl-line { left: 8px; }
+      .tl-item { display: grid; grid-template-columns: 18px minmax(0, 1fr); column-gap: 10px; }
+      .tl-year { position: static; grid-column: 2; grid-row: 1; width: auto; text-align: left; padding: 0 0 3px; }
+      .tl-dot-wrap { grid-column: 1; grid-row: 1 / span 2; }
+      .tl-card { grid-column: 2; grid-row: 2; margin-left: 0; min-width: 0; }
+      .tl-card-top { flex-wrap: wrap; }
+      .tl-connector { margin-left: 28px; }
+      .tl-expand-btn { margin-left: 0; }
+    }
+
   </style>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -930,21 +944,6 @@
     }
     .tl-wrap.open .tl-expand-btn-label::before { content: 'Show less'; }
     .tl-expand-btn-label::before { content: 'Show more'; }
-      background: var(--accent2);
-      border-radius: 999px;
-      width: 22px;
-      height: 22px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.3s ease, background 0.2s;
-      flex-shrink: 0;
-      margin-left: 0.8rem;
-    }
-    .tl-wrap.open .tl-arrow {
-      transform: rotate(180deg);
-      background: var(--accent);
-    }
     .tl-collapsible {
       overflow: hidden;
       max-height: 278px;
@@ -1469,12 +1468,26 @@
       });
     });
 
+    // Collapsed height = everything down to the expand button (measured, not hard-coded),
+    // so it stays correct when cards wrap to more lines on narrow screens.
+    function sizeTimeline() {
+      const wrap = document.getElementById('tlWrap');
+      const box = document.getElementById('tlCollapsible');
+      const spacer = box.querySelector('.tl-expand-btn').nextElementSibling;
+      const open = wrap.classList.contains('open');
+      box.style.maxHeight = (open ? box.scrollHeight : spacer.offsetTop + 26) + 'px';
+    }
+    window.addEventListener('load', sizeTimeline);
+    window.addEventListener('resize', sizeTimeline);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(sizeTimeline);
+
     function toggleTimeline() {
       const wrap = document.getElementById('tlWrap');
       const toggle = wrap.querySelector('.tl-toggle');
       wrap.classList.toggle('open');
       const expanded = wrap.classList.contains('open');
       toggle.setAttribute('aria-expanded', expanded);
+      sizeTimeline();
     }
 
     function togglePrevExp() {
